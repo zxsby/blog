@@ -1,5 +1,5 @@
 {
-  "name": "npm-test",
+  "name": "@cnpm/cnpm-test",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
