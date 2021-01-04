@@ -226,7 +226,7 @@ npm install npm-test  //要是没有切换的话，请手动添加 --registry=ht
 //成功如图所示
 ```
 
-![](https://cdn.nlark.com/yuque/0/2020/png/466273/1609399755696-06c9abdf-c356-4375-b94b-1dacfa8cf52e.png?x-oss-process=image%2Fresize%2Cw_746)
+![1](https://cdn.nlark.com/yuque/0/2020/png/466273/1609399755696-06c9abdf-c356-4375-b94b-1dacfa8cf52e.png?x-oss-process=image%2Fresize%2Cw_746)
 
 删除发布的包
 
@@ -234,7 +234,7 @@ npm install npm-test  //要是没有切换的话，请手动添加 --registry=ht
 npm unpublish npm-test --force  //清除发布的包
 ```
 
-![](https://cdn.nlark.com/yuque/0/2020/png/466273/1609399777620-41e38e2c-e3cb-4d61-ad37-8f2a66ef338b.png?x-oss-process=image%2Fresize%2Cw_746)
+![1](https://cdn.nlark.com/yuque/0/2020/png/466273/1609399777620-41e38e2c-e3cb-4d61-ad37-8f2a66ef338b.png?x-oss-process=image%2Fresize%2Cw_746)
 
 
 # 其他知识点
