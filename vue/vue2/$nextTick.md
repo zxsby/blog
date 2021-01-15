@@ -7,7 +7,6 @@
 
     判断当前环境支持哪些`微任务`,如果没有这采用`setImmediate(ie),setTimout`(宏任务)
     vue中响应式更新操作都是异步的，也是利用了`$nextTick`
-    用户调用$nextTick 和 修改值(响应式更新) 是按照代码先后顺序来执行的
 
 
 ```js
@@ -34,10 +33,25 @@ function timer(flushCallbacks){
       timerFn = () => {
         setImmediate(flushCallbacks)
       }
+  } else {
+      timerFn = () => {
+          setTimeout(flushCallbacks)
+      }
   }
+  timerFn()
 }
-function nextTick(cb){
 
+function flushCallbacks(){
+  callbacks.forEach(cb => cb())
+  waiting = false
+}
+// 微任务是在页面渲染前执行 此时取的是内存中的dom,不关心ui渲染完毕没有
+function nextTick(cb){
+  callbacks.push(cb); // flushSchedulerQueue / userCallback
+  if(!waiting){
+    timer(flushCallbacks)
+    waiting = true
+  }
 }
 
 ```
