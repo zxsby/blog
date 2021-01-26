@@ -1,0 +1,12 @@
+# 说一下React setState原理
+
+- react的类组件通过state管理内部状态,而唯一改变状态更新的视图只能通过setState和forceUpdate。
+
+- setState最终也会走forceUpdate。那么要知道的是每个类组件都有一个updater对象用于管理state的变化,当调用setState
+传入partialState时,会将partialState存入updater中的pendingState中,此时updater又会调用emitUpdat来决定当前是否立即更新,判断条件简单来说是是否有nextProps或者updateQueue的isPending是否开启
+
+- updateQueue用于批量管理的updater
+
+- 如果updateQueue的isPending为true,那么就将当前update直接加入updateQueue的队列中,开启isPending的方式可以是自定义方法和生命周期函数等
+
+- 当这些方法执行完毕更新update,调用update的componentUpdate,判断组件的shouldComponentUpdate决定是否调用forceUpdate进行更新
