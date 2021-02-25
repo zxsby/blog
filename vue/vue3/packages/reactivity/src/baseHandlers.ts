@@ -1,10 +1,9 @@
 //实现new Proxy
 
-import { extend, isObject } from "@vue/shared/src"
+import { TrackOpTypes, TriggerOrTypes } from "./operators"
+import { extend, hasChanged, hasOwn, isArray, isIntegerKey, isObject } from "@vue/shared/src"
 import { reactive, readonly } from "./reactive"
-
-import { TrackOpTypes } from "./operators"
-import { track } from "./effect"
+import { track, trigger } from "./effect"
 
 //是不是仅读的，仅读的属性set会报异常
 //是不是深度的
@@ -33,8 +32,18 @@ function createGetter(isReadonly = false, shallow = false) { // 拦截获取功�
 }
 function createSetter(shallow = false) { // 拦截设置功能
   return function set(target, key, value, receiver){
+    const oldValue = target[key]; //获取老的值
+    let hadKey = isArray(target) && isIntegerKey(key) ? Number(key) < target.length:hasOwn(target,key) //判断新增还是修改
     const result = Reflect.set(target,key,value,receiver)
-
+    //我们要区分是新增还是修改 vue2里无法监控更改索引，无法监控数组的长度变化=》
+    if(!hadKey){
+      //新增
+      trigger(target,TriggerOrTypes.ADD,key,value)
+    }else if(hasChanged(oldValue,value)){
+      //修改
+      trigger(target,TriggerOrTypes.SET,key,value,oldValue)
+    }
+    //当数据更新时 通知对应属性的efact重新执行
     return result
   }
 }

@@ -1,7 +1,7 @@
 ## instanceof
 
 instanceof: 用来检测某个实例是否属于这个类
-
+    instanceof相当于调用了Symbol.hasinstance
     实例instanceof类，属于返回true，不属于返回false
     局限性:要求检测的实例必须是对象数据类型的,基本数据类型的实例是无法基于它检测出来的
 
@@ -34,6 +34,15 @@ instaceof 也可以判断一个实例是否是其父类型或者祖先类型的�
 ```js
 function new_instance_of(leftValue,rightValue) {
   let rightProto = rightValue.prototype;//取右边表达式的prototype值
-  leftValue = l
+  leftValue = leftValue.__proto__; //取左边表达式的__proto__的值
+  while(true){
+    if(leftValue === rightProto){
+      return true
+    }
+    if(leftValue === null){
+      return false
+    }
+    leftValue = leftValue.__proto__
+  }
 }
 ```

@@ -1,3 +1,7 @@
+import { isArray, isIntegerKey } from "@vue/shared/src";
+
+import { TriggerOrTypes } from "./operators";
+
 export function effect(fn,options:any={}) {
   //需要让这个effect变成响应式的effect,可以做到数据变化重新执行
   const effect = createReactiveEffect(fn, options)
@@ -49,4 +53,42 @@ export function track(target,type,key) {
   if(!dep.has(activeEffect)){
     dep.set(activeEffect)
   }
+}
+
+
+
+//找属性对的effect让其执行
+export function trigger(target,type,key?,newValue?,oldValue?){
+  //如果这个属性没有收集过effect，则不需要任何操作
+  const depsMap = targetMap.get(target)
+  if(!depsMap) return
+  const effects = new Set(); // 用于存放需要更新的effect，并去重，最后一起执行
+
+  const add = (effectsToAdd) => {
+    if(effectsToAdd){
+      effectsToAdd.forEach(effect => effects.add(effect))
+    }
+  }
+  //1.看修改的是不是数组的长度 因为改长度影响比较大
+  if(key === 'length' && isArray(target)){
+    // 如果对应的长度 也有依赖收集则需要更新
+    depsMap.forEach((dep,key) => {
+      if(key === 'length'|| key > newValue){// 如果修改的长度，小于收集的索引，则这个收集的索引也需要触发它收集的effect重新执行
+        add(dep)
+      }
+    })
+  }else{
+    // 可能是对象
+    if(key !==undefined){
+      add(depsMap.get(key))
+    }
+    //如果修改的是数组中的某一个索引，该索引未被收集,单数组有被收集则可以通过触发数组长度的更新
+    switch(type){
+      case TriggerOrTypes.ADD:
+        if(isArray(target) && isIntegerKey(key)){
+          add(depsMap.get('length'))
+        }
+    }
+  }
+  effects.forEach((effect:any)=>effect())
 }

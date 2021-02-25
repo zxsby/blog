@@ -10,3 +10,10 @@ export {
 export{
  effect
 } from './effect'
+
+export {
+  ref,
+  shallowRef,
+  toRefs,
+  toRef
+}from './ref'
