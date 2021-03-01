@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>dice</title>
+</head>
+<style>
+  .content{
+    display: flex;
+  }
+  .dice {
+    margin: 16px;
+    padding: 4px;
+
+    background-color: #e7e7e7;
+    width: 104px;
+    height: 104px;
+    object-fit: contain;
+
+    box-shadow:
+      inset 0 5px white,
+      inset 0 -5px #bbb,
+      inset 5px 0 #d7d7d7,
+      inset -5px 0 #d7d7d7;
+
+    border-radius: 10%;
+  }
+  .pip {
+    display: block;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    margin: 4px;
+
+    background-color: #333;
+    box-shadow: inset 0 3px #111, inset 0 -3px #555;
+  }
+  .one{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .two,.three,.four,.five,.six{
+    display: flex;
+    justify-content: space-between;
+  }
+  .two>.pip:last-child,.three>.pip:last-child{
+    align-self: flex-end;
+  }
+  .three>.pip:nth-child(2){
+    align-self: center;
+  }
+  .five>.column,.four>.column,.six>.column{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .five>.column:nth-child(2){
+    justify-content: center;
+  }
+</style>
+
+<body>
+  <div class='content'>
+    <div class="one dice">
+      <span class="pip"></span>
+    </div>
+    <div class="two dice">
+      <span class="pip"></span>
+      <span class="pip"></span>
+    </div>
+    <div class="three dice">
+      <span class="pip"></span>
+      <span class="pip"></span>
+      <span class="pip"></span>
+    </div>
+    <div class="four dice">
+      <div class="column">
+        <span class="pip"></span>
+        <span class="pip"></span>
+      </div>
+      <div class="column">
+        <span class="pip"></span>
+        <span class="pip"></span>
+      </div>
+    </div>
+    <div class="five dice">
+      <div class="column">
+        <span class="pip"></span>
+        <span class="pip"></span>
+      </div>
+      <div class="column">
+        <span class="pip"></span>
+      </div>
+      <div class="column">
+        <span class="pip"></span>
+        <span class="pip"></span>
+      </div>
+    </div>
+    <div class="six dice">
+      <div class="column">
+        <span class="pip"></span>
+        <span class="pip"></span>
+        <span class="pip"></span>
+      </div>
+      <div class="column">
+        <span class="pip"></span>
+        <span class="pip"></span>
+        <span class="pip"></span>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
