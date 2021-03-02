@@ -23,6 +23,7 @@ Function.prototype.call = function (content,...args){
     2.会返回一个绑定后的函数
     3.如果绑定的函数被new了 当前函数的this就是当前实例
     4.new出来的结果可以找到原有类的原型
+![](./img/bind.png)
 ```js
 let obj = {
   name:'小明'
