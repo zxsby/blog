@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <!--html:-->
+<ul id="menu">
+  <li>
+      <a href="/index">首页</a>
+  </li>
+  <li>
+      <a href="/news">资讯</a>
+  </li>
+  <li>
+      <a href="/user">个人中心</a>
+  </li>
+
+</ul>
+<div id="app"></div>
+</body>
+<script>
+  document.querySelector('#menu').addEventListener('click',function (e) {
+    if(e.target.nodeName ==='A'){
+        e.preventDefault()
+        let path = e.target.getAttribute('href')  //获取超链接的href，改为pushState跳转，不刷新页面
+        window.history.pushState({},'',path)  //修改浏览器中显示的url地址
+        // render(path)  //根据path，更改页面内容
+    }
+})
+
+function render(path) {
+    let app = document.getElementById('app')
+    switch (path) {
+        case '/index':
+            app.innerHTML = '<h1>这是首页内容</h1>'
+            break
+        case '/news':
+            app.innerHTML = '<h1>这是新闻内容</h1>'
+            break
+        case '/user':
+            app.innerHTML = '<h1>这是个人中心内容</h1>'
+            break
+        default:
+            app.innerHTML = '<h1>404</h1>'
+    }
+}
+window.addEventListener('popstate', function(e) {
+	//e.state 相当于 history.state
+	console.log('state: ' + JSON.stringify(e));
+	console.log(history);
+});
+// //监听浏览器前进后退事件，并根据当前路径渲染页面
+// window.onpopstate = function (e) {
+//     console.log(e.state,1111)
+//     // render(location.pathname)
+// }
+//第一次进入页面显示首页
+render('/index')
+</script>
+</html>
