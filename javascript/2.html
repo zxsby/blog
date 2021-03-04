@@ -1,20 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
 </head>
+
 <body>
   <script>
-    function* gen(x){
-      yield x + 2;
-      yield x + 3;
-    yield x + 4;
+    // function* gen(x){
+    //   yield x + 2;
+    //   yield x + 3;
+    // yield x + 4;
+    // }
+    // let a = gen(1)
+    // console.log(a.next(),a.next(2),a.next(4))
+    // Array.prototype.map = function (callbackfn, thisArg) {
+    //   // 处理数组类型异常
+    //   if (this === null || this === undefined) {
+    //     throw new TypeError("Cannot read property 'map' of null or undefined");
+    //   }
+    //   // 处理回调类型异常
+    //   if (Object.prototype.toString.call(callbackfn) != "[object Function]") {
+    //     throw new TypeError(callbackfn + ' is not a function')
+    //   }
+    //   // 草案中提到要先转换为对象
+    //   let O = Object(this);
+    //   let T = thisArg;
+
+    //   console.log(O)
+    //   let len = O.length >>> 0;
+    //   let A = new Array(len);
+    //   for (let k = 0; k < len; k++) {
+    //     // 还记得原型链那一节提到的 in 吗？in 表示在原型链查找
+    //     // 如果用 hasOwnProperty 是有问题的，它只能找私有属性
+    //     if (k in O) {
+    //       let kValue = O[k];
+    //       // 依次传入this, 当前项，当前索引，整个数组
+    //       let mappedValue = callbackfn.call(T, kValue, k, O);
+    //       A[k] = mappedValue;
+    //     }
+    //   }
+    //   return A;
+    // }
+    // new Array([1,2,3,4]).map((item,i,arr)=>{console.log(arr)})
+    Array.prototype.reduce = function(callback,initValue){
+      let k = 0,preSum=initValue,curVal
+      if(initValue === undefined){
+        preSum = this[k++]
+      }
+      for(;k<this.length;k++){
+        preSum = callback.call(undefined,preSum,this[k])
+      }
+      return preSum
     }
-    let a = gen(1)
-    console.log(a.next(),a.next(2),a.next(4))
   </script>
 </body>
+
 </html>
