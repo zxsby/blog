@@ -25,3 +25,6 @@ process.nextTick() 会添加 callback 到下一个时间点队列。 在 JavaScr
 ## 浏览器事件环
 
 ![](./img/浏览器事件环.png)
+
+//浏览器微任务mutationObserver  promise
+//宏任务 setTimout/setInterval
