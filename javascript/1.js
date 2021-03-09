@@ -17,7 +17,21 @@
 //   }
 //   console.log(r1,r2,r3,r4)
 
-let a = 1; let b = { num: 1 }
-setTimeout(() => {
-  a = 2; b.num=2}, 200);
-module.exports = { a, b, };
+// let a = 1; let b = { num: 1 }
+// setTimeout(() => {
+//   a = 2; b.num=2}, 200);
+// module.exports = { a, b, };
+
+
+// let arr1 = ['a','b','c']
+// let arr2 = [1,2,3,4,5,6]
+
+//   function a(arr1,arr2){
+//     let result = []
+//     while(arr1.length){
+//       result.push(`${arr1.shift()}:${arr2.shift()}`)
+//     }
+//     result = result.concat(arr1,arr2)
+//     return result
+//   }
+//   a(arr1,arr2)

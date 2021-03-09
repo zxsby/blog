@@ -34,13 +34,63 @@ function queen(n,decisions = []){
     let r = []
     for(let i =0;i<n*n;i++){
         if(decisions.indexOf(i)===-1){
-            
+
             r = r.concat(queen(n,decisions.concat(i)))
         }
     }
     return r
 }
-console.log(queen(4))
+// console.log(queen(4))
+
+let tree = {
+  val: 1,
+  left: {
+      val: 2,
+      left: {
+          val: 4,
+          left: null,
+          right: null
+      },
+      right: {
+          val: 5,
+          left: null,
+          right: null
+      }
+  },
+  right: {
+      val: 3,
+      left: null,
+      right: null
+  }
+}
+function traverse(tree){
+  debugger
+  if(tree===null){
+    return 0
+  }
+  let num = 0
+  let queue = []
+  queue.push(tree)
+  while(queue.length){
+    let current = queue.shift()
+    current.val = num*10 + current.val
+    if(current.left===null && current.right === null){
+      num =num + current.val
+    }else{
+      if(current.left){
+        queue.push(current.left)
+      }
+      if(current.right){
+        queue.push(current.right)
+      }
+      num +=current.val
+    }
+  }
+  return num
+}
+
+
+console.log(traverse(tree,0))
     </script>
 </body>
 </html>
