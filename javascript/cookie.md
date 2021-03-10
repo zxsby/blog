@@ -4,3 +4,12 @@
     服务端/浏览器都可以设置cookie
     每次请求都会携带cookie (cookie过大 可能会造成页面白屏,流量浪费)
     合理设置cookie,定期删除cookie,根据路径合理设置cookie(cookie最终存放在客户端上的)
+
+# session
+    为了解决cookie不安全的问题 session存在服务端(session是基于cookie)
+
+# locaStorage
+    本地存储 可以存放一些资源 关闭网页后下次访问依旧可以使用
+
+# sessionStorage
+    用于页面跳转传值 玩也关闭后会销毁
