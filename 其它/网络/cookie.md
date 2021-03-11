@@ -5,6 +5,13 @@
     每次请求都会携带cookie (cookie过大 可能会造成页面白屏,流量浪费)
     合理设置cookie,定期删除cookie,根据路径合理设置cookie(cookie最终存放在客户端上的)
 
+    设置cookie参数
+    key/value/domain/path/maxAge/expires/httpOnly
+    domain 限制域名 默认为当前域名
+    path限制设置cookie的路径，减少cookie的传入
+    maxAge(多少秒)/expires 确切的时间点
+    httpOnly 不能通过代码去修改cookie
+
 # session
     为了解决cookie不安全的问题 session存在服务端(session是基于cookie)
 

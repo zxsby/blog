@@ -28,7 +28,7 @@ Array.prototype.reduce = function(callback,initValue){
   if(initValue === undefined){
     preSum = this[k++]
   }
-  for(,k<this.length;i++){
+  for(,k<this.length;k++){
     preSum = callback.call(undefined,preSum,this[k])
   }
   return preSum
