@@ -10,5 +10,11 @@ module.exports = {
     rules:[
       {test:/\.txt$/,use:'raw-loader'}
     ]
-  }
+  },
+  plugin:[
+      new webpack.DefinePlugin({
+         'process.env.NODE_ENV':JSON.stringify('development'),
+         'NODE_ENV':JSON.stringify('production'),
+      })
+  ]
 }
